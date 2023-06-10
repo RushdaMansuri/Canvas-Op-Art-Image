@@ -1,0 +1,53 @@
+<html>
+   <head>
+      <title>Rushda's OP Image</title>
+      <meta name="author" content="Rushda Mansuri">
+      <meta http-equiv="refresh" content="30">
+      <meta name="description" content="Rushda's OP Image">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+   <style>
+      html, body {
+      margin: 0;
+      padding: 0;
+      }
+
+      @media screen and (max-width: 700px) {
+      #canvasboard		
+      { 
+        display: grid; 
+        grid-template-columns: 1fr;
+        width: 100%;
+        height: 100%;
+      }
+   </style>
+   <script>
+      function draw() {
+        let canvas = document.getElementById("canvasboard");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        context = canvas.getContext("2d");
+        
+        let sWidth;
+        let xCoordinate = 0;
+        var side =  30 * canvas.height / 1000;
+        var length = side * canvas.width / 1000;
+        var magic = (length * (length + 1) + (side - length) * (side - length)) / 2;
+        for (var i = 0; i < 50; i ++) {
+          sWidth = canvas.width / magic * Math.abs(length - i);
+          for (var j = 0; j < 20 ; j++) {
+            if ((i + j) % 2 == 0) {
+              context.fillStyle = "black";
+            } else {
+              context.fillStyle = "white";
+            }
+            context.fillRect(xCoordinate, j * canvas.height / 10, sWidth, canvas.height / 10);
+          }
+          xCoordinate = xCoordinate + sWidth;
+        }
+      } 
+   </script>
+   <body onload="draw()">
+      <canvas id="canvasboard"></canvas>
+   </body>
+</html>
